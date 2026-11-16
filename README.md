@@ -225,6 +225,18 @@ Issues and pull requests are welcome. Please run `pnpm lint` and `pnpm test`
 before opening a pull request, and keep commits focused (Conventional Commit
 style messages are used here).
 
+### Releases
+
+Releases are managed with [Changesets](https://github.com/changesets/changesets).
+If a pull request changes what users of `ember-a2ui` get, add a changeset with
+`pnpm changeset` and pick patch, minor or major. Docs, tests, the demo and
+tooling need none.
+
+Merging to `main` opens or updates a "chore: version packages" pull request
+that bumps the version and writes `packages/ember-a2ui/CHANGELOG.md`. Merging
+that pull request builds the addon and publishes it to npm through npm trusted
+publishing, with provenance.
+
 ## License
 
 [Apache-2.0](./LICENSE)
