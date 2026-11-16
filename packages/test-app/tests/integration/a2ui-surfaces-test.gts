@@ -40,6 +40,7 @@ module('Integration | a2ui surfaces', function (hooks) {
       timeout: 3000,
     });
     assert.dom('.a2ui-surface').includesText('Login');
+    assert.dom('.a2ui-surface').doesNotIncludeText('##', 'markdown rendered');
 
     // TextField
     const input = await find<HTMLInputElement>(
