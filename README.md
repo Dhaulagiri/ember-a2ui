@@ -8,9 +8,13 @@ components render them.
 **Status: experimental and unofficial.** This project is not affiliated with or
 endorsed by Google or the A2UI project. APIs may change before 1.0.
 
-**Live demo:** [A2UI Explorer](https://dhaulagiri.github.io/ember-a2ui/), with the
-basic catalog samples rendered by this addon, an editable message log and a mock
-agent for the action round trip.
+**Live demo:** [A2UI Explorer](https://dhaulagiri.github.io/ember-a2ui/). Watch a
+scripted agent stream surfaces into Ember one message at a time, then play,
+pause, step or rewind the stream. A two-way wire log shows every message and
+action, the State tab shows each surface's live data model, and the mock agent
+answers actions with new surfaces. It also has a gallery of all 18 basic
+catalog components, theme presets built on the catalog's CSS tokens, a message
+editor and shareable links.
 
 ## Supported protocol versions
 

@@ -5,6 +5,8 @@ const sample: Sample = {
   id: 'v0-9-scaffold-simple-login-form',
   name: 'Simple Login Form',
   version: 'v0.9',
+  group: 'v0.9',
+  prompt: 'Sign me in.',
   description: 'Simple example demonstrating basic catalog components.',
   messages: [
     {

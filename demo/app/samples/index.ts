@@ -1,3 +1,5 @@
+import s_cabin_booking from './cabin-booking';
+import s_component_gallery from './component-gallery';
 import s_scaffold_simple_text from './scaffold-simple-text';
 import s_scaffold_row_layout from './scaffold-row-layout';
 import s_scaffold_simple_login_form from './scaffold-simple-login-form';
@@ -11,9 +13,11 @@ import s_v0_9_scaffold_simple_login_form from './v0-9-scaffold-simple-login-form
 import s_v0_9_scaffold_simple_text from './v0-9-scaffold-simple-text';
 import type { Sample } from './types';
 
-export type { Sample };
+export type { ActionLike, ProtocolVersion, Sample } from './types';
 
 export const SAMPLES: Sample[] = [
+  s_cabin_booking,
+  s_component_gallery,
   s_scaffold_simple_text,
   s_scaffold_row_layout,
   s_scaffold_simple_login_form,
@@ -26,6 +30,8 @@ export const SAMPLES: Sample[] = [
   s_v0_9_scaffold_simple_login_form,
   s_v0_9_scaffold_simple_text,
 ];
+
+export const GROUPS: Sample['group'][] = ['Showcase', 'Basic catalog', 'v0.9'];
 
 export function findSample(id: string | undefined): Sample {
   return SAMPLES.find((s) => s.id === id) ?? (SAMPLES[0] as Sample);

@@ -5,6 +5,7 @@ const sample: Sample = {
   id: 'scaffold-row-layout',
   name: 'Row Layout',
   version: '1.0',
+  group: 'Basic catalog',
   description: 'Simple example demonstrating basic catalog components.',
   messages: [
     {

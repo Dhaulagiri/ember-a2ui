@@ -5,6 +5,8 @@ const sample: Sample = {
   id: 'recipe-card',
   name: 'Recipe Card',
   version: '1.0',
+  group: 'Basic catalog',
+  prompt: 'Find me a healthy lunch recipe.',
   description: 'Example of recipe card demonstrating Tabs and pluralization.',
   messages: [
     {

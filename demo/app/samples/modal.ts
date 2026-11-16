@@ -5,6 +5,7 @@ const sample: Sample = {
   id: 'modal',
   name: 'Modal Sample',
   version: '1.0',
+  group: 'Basic catalog',
   description: 'Example of Modal component showing a trigger and content.',
   messages: [
     {

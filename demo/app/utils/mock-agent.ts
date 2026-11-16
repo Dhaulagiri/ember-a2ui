@@ -1,10 +1,6 @@
-import type { Sample } from '../samples/types';
+import type { ActionLike, Sample } from '../samples/types';
 
-export interface ActionLike {
-  name: string;
-  surfaceId: string;
-  context?: Record<string, unknown>;
-}
+export type { ActionLike };
 
 const TRIGGER = /submit|login|sign.?in/i;
 
@@ -72,4 +68,17 @@ export function buildReply(
       },
     },
   ];
+}
+
+/**
+ * The mock agent's turn for `action`: the sample's own scripted reply when it
+ * has one, otherwise the generic greeting for login-ish actions. `undefined`
+ * means the agent stays silent.
+ */
+export function agentReply(
+  sample: Sample,
+  action: ActionLike,
+): unknown[] | undefined {
+  if (sample.respond) return sample.respond(action);
+  return shouldRespond(action) ? buildReply(action, sample.version) : undefined;
 }
