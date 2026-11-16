@@ -1,5 +1,11 @@
 # ember-a2ui
 
+## 0.1.1
+
+### Patch Changes
+
+- 4b3e9d1: Include `CHANGELOG.md` in the published package.
+
 ## 0.1.0
 
 Initial experimental release.
