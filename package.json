@@ -6,9 +6,12 @@
     "build": "pnpm --filter ember-a2ui build && pnpm --filter demo build",
     "start": "pnpm --parallel --filter ember-a2ui --filter demo start",
     "test": "pnpm --filter ember-a2ui build && pnpm --filter test-app test:ember && pnpm --filter demo test",
-    "lint": "pnpm --filter ember-a2ui lint && pnpm --filter test-app lint && pnpm --filter demo lint"
+    "lint": "pnpm --filter ember-a2ui lint && pnpm --filter test-app lint && pnpm --filter demo lint",
+    "changeset": "changeset",
+    "release": "pnpm --filter ember-a2ui build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "prettier": "^3.4.2",
     "prettier-plugin-ember-template-tag": "^2.0.4"
   }
