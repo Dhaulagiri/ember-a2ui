@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
-import { registerDestructor } from '@ember/destroyable';
+import { isDestroying, registerDestructor } from '@ember/destroyable';
 import { A2uiSession, A2uiSurfaces } from 'ember-a2ui';
 import { SAMPLES, findSample } from '../samples';
 import type { Sample } from '../samples';
@@ -42,7 +42,11 @@ export default class Explorer extends Component {
   constructor(owner: unknown, args: object) {
     super(owner as never, args);
     registerDestructor(this, () => this.disposeRuns());
-    this.select(this.sample);
+    // Load the first sample after this render: select() reads and writes
+    // tracked state, which Ember forbids inside the same render.
+    queueMicrotask(() => {
+      if (!isDestroying(this)) this.select(this.sample);
+    });
   }
 
   get sample(): Sample {
@@ -75,7 +79,7 @@ export default class Explorer extends Component {
       id: ++this.runCounter,
       session: new A2uiSession({
         onAction: (action: ActionLike) => this.handleAction(run, action),
-      } as never),
+      }),
     };
     this.runs = [run];
     this.dataModel = '';
@@ -87,7 +91,7 @@ export default class Explorer extends Component {
     await Promise.resolve();
     if (!this.current(run)) return;
     try {
-      run.session.processMessages(messages as never);
+      run.session.processMessages(messages);
       this.error = '';
     } catch (e) {
       this.error = e instanceof Error ? e.message : String(e);
@@ -113,7 +117,7 @@ export default class Explorer extends Component {
     if (!this.current(run)) return;
     try {
       run.session.processMessages(
-        buildReply(action, this.sample.version) as never,
+        buildReply(action, this.sample.version),
       );
     } catch (e) {
       this.error = e instanceof Error ? e.message : String(e);
@@ -181,7 +185,7 @@ export default class Explorer extends Component {
                 {{on "click" (fn this.selectSample item.sample)}}
               >
                 <span>{{item.sample.name}}</span>
-                <small>v{{item.sample.version}}</small>
+                <small>{{item.sample.version}}</small>
               </button>
             </li>
           {{/each}}
