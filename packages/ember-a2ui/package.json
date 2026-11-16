@@ -96,6 +96,7 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {
+      "./components/a2ui-node-content.js": "./dist/_app_/components/a2ui-node-content.js",
       "./components/a2ui-node.js": "./dist/_app_/components/a2ui-node.js",
       "./components/a2ui-surface.js": "./dist/_app_/components/a2ui-surface.js",
       "./components/a2ui-surfaces.js": "./dist/_app_/components/a2ui-surfaces.js",
