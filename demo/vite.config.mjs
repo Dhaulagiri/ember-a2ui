@@ -10,6 +10,8 @@ export default defineConfig({
     babel({
       babelHelpers: 'runtime',
       extensions,
+      // @a2ui/web_core imports JSON schemas; keep Babel off them in the dep optimizer.
+      exclude: [/\.json(\?.*)?$/],
     }),
   ],
 });
