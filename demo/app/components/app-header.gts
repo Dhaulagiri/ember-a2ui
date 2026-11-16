@@ -29,7 +29,10 @@ export default class AppHeader extends Component {
       <div class="brand">
         <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
           <rect x="2" y="2" width="28" height="28" rx="8" />
-          <path d="M9 22 L16 9 L23 22 M12 17.5 H20" />
+          {{! "e" for Ember, "A" for A2UI }}
+          <path
+            d="M5.5 17.5 H14.5 A4.5 4.5 0 1 0 13.2 20.7 M18 22 L22 10 L26 22 M19.5 17.5 H24.5"
+          />
         </svg>
         <div>
           <h1>ember-a2ui</h1>
