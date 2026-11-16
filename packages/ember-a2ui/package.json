@@ -1,12 +1,24 @@
 {
   "name": "ember-a2ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Ember renderer for A2UI (agent-to-UI protocol)",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "a2ui",
+    "agent",
+    "generative-ui",
+    "renderer"
   ],
-  "repository": "",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dhaulagiri/ember-a2ui.git",
+    "directory": "packages/ember-a2ui"
+  },
+  "homepage": "https://github.com/Dhaulagiri/ember-a2ui#readme",
+  "bugs": {
+    "url": "https://github.com/Dhaulagiri/ember-a2ui/issues"
+  },
+  "license": "Apache-2.0",
   "author": "",
   "exports": {
     ".": {
@@ -29,7 +41,9 @@
   "files": [
     "addon-main.cjs",
     "declarations",
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rollup --config",
