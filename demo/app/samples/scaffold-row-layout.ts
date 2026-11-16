@@ -1,0 +1,48 @@
+// Adapted from google/A2UI (Apache-2.0): catalogs/basic/v1/examples/scaffold-row-layout.json
+import type { Sample } from './types';
+
+const sample: Sample = {
+  id: 'scaffold-row-layout',
+  name: 'Row Layout',
+  version: '1.0',
+  description: 'Simple example demonstrating basic catalog components.',
+  messages: [
+    {
+      version: '1.0',
+      createSurface: {
+        surfaceId: 'gallery-row-layout',
+        catalogId:
+          'https://a2ui.org/specification/v1_0/catalogs/basic/catalog.json',
+      },
+    },
+    {
+      version: '1.0',
+      updateComponents: {
+        surfaceId: 'gallery-row-layout',
+        components: [
+          {
+            id: 'root',
+            component: 'Row',
+            children: ['left_text', 'right_text'],
+            justify: 'spaceBetween',
+            align: 'center',
+          },
+          {
+            id: 'left_text',
+            component: 'Text',
+            text: 'Left Content',
+            variant: 'body',
+          },
+          {
+            id: 'right_text',
+            component: 'Text',
+            text: 'Right Content',
+            variant: 'caption',
+          },
+        ],
+      },
+    },
+  ],
+};
+
+export default sample;
