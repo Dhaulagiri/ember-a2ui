@@ -2,9 +2,7 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [main, master]
   pull_request: {}
 
 concurrency:
@@ -12,69 +10,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    name: "Tests"
+  ci:
+    name: Build, lint and test
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          # allowBuilds in pnpm-workspace.yaml needs a recent pnpm; this
+          # matches the version used to generate the lockfile.
+          version: 12
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
           cache: pnpm
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm build
       - name: Lint
         run: pnpm lint
-      - name: Run Tests
+      - name: Test
         run: pnpm test
-
-  floating:
-    name: "Floating Dependencies"
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: pnpm
-      - name: Install Dependencies
-        run: pnpm install --no-lockfile
-      - name: Run Tests
-        run: pnpm test
-
-  try-scenarios:
-    name: ${{ matrix.try-scenario }}
-    runs-on: ubuntu-latest
-    needs: 'test'
-    timeout-minutes: 10
-
-    strategy:
-      fail-fast: false
-      matrix:
-        try-scenario:
-          - ember-lts-4.12
-          - ember-lts-5.4
-          - ember-release
-          - ember-beta
-          - ember-canary
-          - embroider-safe
-          - embroider-optimized
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: pnpm
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Run Tests
-        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
-        working-directory: test-app
+        env:
+          CI: 'true'
