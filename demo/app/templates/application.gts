@@ -1,10 +1,13 @@
 import { pageTitle } from 'ember-page-title';
-import { A2uiSurface } from 'ember-a2ui';
 
 <template>
-  {{pageTitle "Demo"}}
+  {{pageTitle "A2UI Explorer"}}
 
-  <A2uiSurface />
-
-  {{outlet}}
+  <div class="app">
+    <header class="app-header">
+      <h1>A2UI Explorer</h1>
+      <span class="muted">Ember renderer demo</span>
+    </header>
+    {{outlet}}
+  </div>
 </template>
