@@ -47,24 +47,27 @@ body {
     sans-serif;
 }
 
-a {
+/* Base element styles stay out of .preview, where the A2UI catalog renders
+   light-DOM elements that must look exactly as they would in any app. */
+
+:where(a:not(.preview *)) {
   color: inherit;
   text-decoration-color: color-mix(in srgb, currentcolor 40%, transparent);
   text-underline-offset: 2px;
 }
 
-a:hover {
+:where(a:not(.preview *):hover) {
   color: var(--accent);
 }
 
-h1,
-h2,
-h3 {
+:where(h1:not(.preview *)),
+:where(h2:not(.preview *)),
+:where(h3:not(.preview *)) {
   margin: 0;
   line-height: 1.25;
 }
 
-h3 {
+:where(h3:not(.preview *)) {
   margin: 1rem 0 0.4rem;
   color: var(--muted);
   font-size: 0.75rem;
@@ -73,21 +76,21 @@ h3 {
   text-transform: uppercase;
 }
 
-h3:first-of-type {
+:where(h3:not(.preview *):first-of-type) {
   margin-top: 0;
 }
 
-p {
+:where(p:not(.preview *)) {
   margin: 0;
 }
 
-code,
-kbd {
+:where(code:not(.preview *)),
+:where(kbd:not(.preview *)) {
   font-family: var(--mono);
   font-size: 0.92em;
 }
 
-kbd {
+:where(kbd:not(.preview *)) {
   padding: 0 0.3em;
   border: 1px solid var(--border);
   border-bottom-width: 2px;
@@ -95,8 +98,8 @@ kbd {
   background: var(--panel);
 }
 
-button,
-select {
+:where(button:not(.preview *)),
+:where(select:not(.preview *)) {
   padding: 0.35rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -106,22 +109,22 @@ select {
   cursor: pointer;
 }
 
-button:hover:not(:disabled),
-select:hover {
+:where(button:not(.preview *):hover:not(:disabled)),
+:where(select:not(.preview *):hover) {
   border-color: var(--accent);
 }
 
-button:disabled {
+:where(button:not(.preview *):disabled) {
   opacity: 0.4;
   cursor: default;
 }
 
-button:focus-visible,
-select:focus-visible,
-a:focus-visible,
-textarea:focus-visible,
-input:focus-visible,
-summary:focus-visible {
+:where(button:not(.preview *):focus-visible),
+:where(select:not(.preview *):focus-visible),
+:where(a:not(.preview *):focus-visible),
+:where(textarea:not(.preview *):focus-visible),
+:where(input:not(.preview *):focus-visible),
+:where(summary:not(.preview *):focus-visible) {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
