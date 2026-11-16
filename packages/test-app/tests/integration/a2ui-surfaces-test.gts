@@ -72,11 +72,7 @@ module('Integration | a2ui surfaces', function (hooks) {
 
     // Button
     const button = await find<HTMLButtonElement>('a2ui-basic-button button');
-    assert.strictEqual(
-      button.textContent?.includes('Sign In'),
-      true,
-      'button label',
-    );
+    assert.dom(button).includesText('Sign In');
     await click(button);
     await waitUntil(() => actions.length > 0, { timeout: 3000 });
 
