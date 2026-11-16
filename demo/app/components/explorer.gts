@@ -116,9 +116,7 @@ export default class Explorer extends Component {
     await sleep(AGENT_DELAY_MS);
     if (!this.current(run)) return;
     try {
-      run.session.processMessages(
-        buildReply(action, this.sample.version),
-      );
+      run.session.processMessages(buildReply(action, this.sample.version));
     } catch (e) {
       this.error = e instanceof Error ? e.message : String(e);
     }
