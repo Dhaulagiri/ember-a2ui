@@ -5,6 +5,7 @@ const sample: Sample = {
   id: 'v0-9-scaffold-simple-text',
   name: 'Simple Text',
   version: 'v0.9',
+  group: 'v0.9',
   description: 'Simple example demonstrating basic catalog components.',
   messages: [
     {

@@ -26,7 +26,7 @@ module('Acceptance | explorer', function (hooks) {
 
   test('selecting a sample renders it', async function (assert) {
     await visit('/');
-    assert.dom('[data-test-sample]').exists({ count: 11 });
+    assert.dom('[data-test-sample]').exists({ count: 13 });
 
     await click('[data-test-sample="scaffold-simple-login-form"]');
     assert.dom('[data-test-sample-title]').hasText('Simple Login Form');

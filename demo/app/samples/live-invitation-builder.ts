@@ -5,6 +5,8 @@ const sample: Sample = {
   id: 'live-invitation-builder',
   name: 'Live Invitation Builder',
   version: '1.0',
+  group: 'Basic catalog',
+  prompt: 'Help me make an invitation for the summer gala.',
   description:
     'Demonstrates reactive two-way binding where editor inputs update a live preview in real-time.',
   messages: [

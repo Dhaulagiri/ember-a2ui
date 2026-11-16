@@ -6,7 +6,7 @@ import { isDestroying, registerDestructor } from '@ember/destroyable';
 import { A2uiSession, A2uiSurfaces } from 'ember-a2ui';
 import { SAMPLES, findSample } from '../samples';
 import type { Sample } from '../samples';
-import { buildReply, shouldRespond } from '../utils/mock-agent';
+import { agentReply } from '../utils/mock-agent';
 import type { ActionLike } from '../utils/mock-agent';
 
 interface Run {
@@ -111,12 +111,13 @@ export default class Explorer extends Component {
       },
     ];
     this.refreshModel();
-    if (!shouldRespond(action)) return;
+    const reply = agentReply(this.sample, action);
+    if (!reply) return;
     // Mock agent round trip: reply after a short delay, outside of render.
     await sleep(AGENT_DELAY_MS);
     if (!this.current(run)) return;
     try {
-      run.session.processMessages(buildReply(action, this.sample.version));
+      run.session.processMessages(reply);
     } catch (e) {
       this.error = e instanceof Error ? e.message : String(e);
     }

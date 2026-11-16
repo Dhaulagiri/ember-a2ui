@@ -5,6 +5,7 @@ const sample: Sample = {
   id: 'child-list-template',
   name: 'ChildList Template Expansion',
   version: '1.0',
+  group: 'Basic catalog',
   description:
     'Demonstrates dynamic list generation using ChildList object templates.',
   messages: [
