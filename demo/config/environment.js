@@ -4,7 +4,8 @@ module.exports = function (environment) {
   const ENV = {
     modulePrefix: 'demo',
     environment,
-    rootURL: '/',
+    // GitHub Pages serves the demo from /ember-a2ui/; see .github/workflows/pages.yml.
+    rootURL: process.env.DEMO_BASE ?? '/',
     locationType: 'history',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
