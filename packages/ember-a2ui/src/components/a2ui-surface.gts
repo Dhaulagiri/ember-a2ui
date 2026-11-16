@@ -10,6 +10,13 @@ import {
 } from '@a2ui/web_core';
 import { SignalCell } from '../utils/signal-bridge.ts';
 import A2uiNode from './a2ui-node.gts';
+import A2uiNodeContent from './a2ui-node-content.gts';
+import { HostRegistry } from '../utils/host-registry.ts';
+import type { EmberComponentImplementation } from '../define-component.ts';
+
+function componentOf(node: ComponentNode) {
+  return (node.impl as EmberComponentImplementation).component;
+}
 
 interface SurfaceViewSignature {
   Element: HTMLDivElement;
@@ -25,6 +32,7 @@ class SurfaceView extends Component<SurfaceViewSignature> {
     this.args.surface,
     this.args.surface.defaultCatalog,
   );
+  registry = HostRegistry.forSurface(this.args.surface);
   root = new SignalCell<ComponentNode | undefined>(
     this,
     this.resolver.rootNode,
@@ -39,6 +47,13 @@ class SurfaceView extends Component<SurfaceViewSignature> {
   <template>
     <div class="a2ui-surface" data-surface-id={{@surface.id}} ...attributes>
       <A2uiNode @node={{this.root.value}} />
+      {{#each this.registry.entries key="id" as |entry|}}
+        {{#in-element entry.host insertBefore=null}}
+          {{#each (array entry.node) as |node|}}
+            <A2uiNodeContent @node={{node}} @component={{componentOf node}} />
+          {{/each}}
+        {{/in-element}}
+      {{/each}}
     </div>
   </template>
 }
