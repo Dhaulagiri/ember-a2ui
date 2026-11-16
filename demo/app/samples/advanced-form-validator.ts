@@ -5,6 +5,8 @@ const sample: Sample = {
   id: 'advanced-form-validator',
   name: 'Advanced Form Validator',
   version: '1.0',
+  group: 'Basic catalog',
+  prompt: 'I want to register for the meetup.',
   description:
     'Demonstrates complex validation logic and deeply nested formatting functions.',
   messages: [
@@ -52,7 +54,7 @@ const sample: Sample = {
             component: 'TextField',
             label: 'Email Address',
             value: { '@path': '/formData/email' },
-            '@checks': [
+            checks: [
               {
                 condition: {
                   '@call': 'email',
@@ -67,7 +69,7 @@ const sample: Sample = {
             component: 'TextField',
             label: 'Phone Number',
             value: { '@path': '/formData/phone' },
-            '@checks': [
+            checks: [
               {
                 condition: {
                   '@call': 'regex',
@@ -85,7 +87,7 @@ const sample: Sample = {
             component: 'TextField',
             label: 'Zip Code',
             value: { '@path': '/formData/zip' },
-            '@checks': [
+            checks: [
               {
                 condition: {
                   '@call': 'regex',
@@ -113,7 +115,7 @@ const sample: Sample = {
             id: 'submit_btn',
             component: 'Button',
             child: 'submit_btn_text',
-            '@checks': [
+            checks: [
               {
                 condition: {
                   '@call': 'and',
