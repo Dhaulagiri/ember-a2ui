@@ -193,7 +193,6 @@ nodes with `<A2uiNode @node={{child}} />`. `extendBasicCatalog` accepts
   through `defineEmberComponent`; handle accessibility inside your component.
 - The re-exported schema helpers (`DynamicStringSchema`, ...) are the v1.0
   flavour. For v0.9 custom schemas import from `@a2ui/web_core/v0_9`.
-- There is no conformance test harness yet.
 - No server-side rendering (the renderer relies on custom elements and the DOM).
 - v0.8 is not supported.
 
@@ -215,6 +214,19 @@ pnpm lint
 ```
 
 Tests run in headless Chrome (QUnit via testem).
+
+The test app also runs A2UI's framework adapter conformance suites, the cases
+`@a2ui/lit` and `@a2ui/react` run: `conformance/core/adapter_conformance.yaml`
+and `conformance/core/accessibility.yaml`, rendered through `<A2uiSurface>`
+(`packages/test-app/tests/conformance`). They're pinned to the A2UI commit
+that published the `@a2ui/web_core` version this repo depends on. Every case
+passes; a case that doesn't goes in `KNOWN_GAPS` with its reason. When you bump
+`@a2ui/web_core`, update `COMMIT` in `scripts/sync-conformance.py` and run it
+(it needs Python 3 with PyYAML):
+
+```sh
+python3 scripts/sync-conformance.py
+```
 
 ## Repository layout
 
